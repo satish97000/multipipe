@@ -1,0 +1,27 @@
+node {
+    def mvnHome
+    stage('Pull code from git') { 
+        git credentialsId: 'github', url: 'https://github.com/satish97000/jenkins.git'
+    }
+    stage(' cleaning ') {
+        sh ' mvn clean '
+    }
+      stage('validate ') {
+        sh ' mvn validate '
+    }
+      stage(' compile ') {
+        sh ' mvn compile '
+      }
+    stage('testing ') {
+    sh ' mvn test '
+    }
+    stage(' package ') {
+    sh ' mvn package '
+    }
+    stage(' verifying ') {
+    sh ' mvn verify '
+    }
+    stage(' installing ') {
+    sh ' mvn install '
+    }
+}
